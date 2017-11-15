@@ -1,0 +1,62 @@
+
+<button mat-raised-button (click)="addPatient()">Add Patient</button>
+
+<div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter filter">
+      </mat-form-field>
+    </div>
+  
+    <mat-table #table [dataSource]="dataSource" matSort>
+  
+      <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Patient Id </mat-header-cell>
+          <mat-cell *matCellDef="let patient"> {{patient.id}} </mat-cell>
+      </ng-container>
+
+          <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let patient"> {{patient.firstName}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let patient"> {{patient.lastName}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="insuranceName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Insurance </mat-header-cell>
+        <mat-cell *matCellDef="let patient"> {{patient.insuranceName}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="insuranceId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Insurance Id </mat-header-cell>
+        <mat-cell *matCellDef="let patient"> {{patient.insuranceId}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let patient"> {{patient.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+          <mat-cell *matCellDef="let patient"> {{patient.phone}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="comment">
+          <mat-header-cell *matHeaderCellDef> Comment </mat-header-cell>
+          <mat-cell *matCellDef="let patient"> {{patient.regComment}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewPatient(row)"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator #paginator
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
